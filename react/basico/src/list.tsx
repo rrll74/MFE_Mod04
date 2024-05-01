@@ -1,5 +1,16 @@
 import React, { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+} from "@mui/material";
 import { Pagination } from "./pagination";
 import { MyContext, MyContextProvider } from "./pagination.context";
 
@@ -56,9 +67,13 @@ export const ListPage: React.FC = () => {
   return (
     <MyContextProvider>
       <React.Fragment>
-        <h2>Hello from List page</h2>+{" "}
-        <input value={filter} onChange={(e) => setFilter(e.target.value)} />
-        <button
+        <TextField
+          variant="outlined"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+        <Button
+          variant="contained"
           onClick={() => {
             setPag(1);
             myContext.setPage(1);
@@ -66,36 +81,49 @@ export const ListPage: React.FC = () => {
           }}
         >
           Filtrar por organización
-        </button>
+        </Button>
         {members.length !== 0 ? (
-          <React.Fragment>
-            <div className="list-user-list-container">
-              <span className="list-header">Avatar</span>
-              <span className="list-header">Id</span>
-              <span className="list-header">Name</span>
-              {members.map((member, index) =>
-                index < pag * 5 && index >= (pag - 1) * 5 ? (
-                  <React.Fragment key={member.id}>
-                    <img src={member.avatar_url} />
-                    <span>{member.id}</span>
-                    <Link to={`/detail/${member.login}`}>{member.login}</Link>
-                  </React.Fragment>
-                ) : (
-                  ""
-                )
-              )}
-            </div>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Avatar</TableCell>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Name</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {members.map((member, index) =>
+                  index < pag * 5 && index >= (pag - 1) * 5 ? (
+                    <TableRow key={member.id}>
+                      <TableCell>
+                        <img src={member.avatar_url} />
+                      </TableCell>
+                      <TableCell>
+                        <span>{member.id}</span>
+                      </TableCell>
+                      <TableCell>
+                        <Link to={`/detail/${member.login}`}>
+                          {member.login}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    ""
+                  )
+                )}
+              </TableBody>
+            </Table>
             <Pagination
               totals={members.length}
               onChange={rerender}
               totalPages={calcPages()}
               currentPage={pag}
             />
-          </React.Fragment>
+          </TableContainer>
         ) : (
           <h3>"Organization doesn't exist or has no users."</h3>
         )}
-        <Link to="/detail">Navigate to detail page</Link>
       </React.Fragment>
     </MyContextProvider>
   );

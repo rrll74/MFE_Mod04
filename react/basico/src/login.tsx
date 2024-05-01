@@ -1,5 +1,13 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  Button,
+  TextField,
+  OutlinedInput,
+} from "@mui/material";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -17,30 +25,34 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleNavigation}>
-        <h2>Hello from login page</h2>
-
-        <div>
-          <div>
-            <label>Username: </label>
-            <input
+    <Card sx={{ padding: "20px", maxWidth: "300px" }}>
+      <CardHeader title="Login" />
+      <CardContent>
+        <form onSubmit={handleNavigation}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <TextField
+              required
+              variant="outlined"
+              label="User Name"
+              defaultValue=""
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-          </div>
-          <div>
-            <label>Password: </label>
-            <input
+            <TextField
+              required
+              variant="outlined"
+              label="Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
-        </div>
 
-        <button type="submit">Login</button>
-      </form>
-    </>
+            <Button variant="contained" type="submit">
+              Login
+            </Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 };

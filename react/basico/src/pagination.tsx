@@ -1,5 +1,6 @@
 import React from "react";
 import { MyContext } from "./pagination.context";
+import { Button } from "@mui/material";
 
 interface Props {
   totals: number;
@@ -26,15 +27,21 @@ export const Pagination: React.FC<Props> = (props) => {
 
   return (
     <React.Fragment key="pagination">
-      <span>
-        Elementos totales: {totals} -- {" "}
-      </span>
+      <span>Total Elements: {totals} -- Page: </span>
       {totalPages.map((nro) => (
         <React.Fragment key={"pag" + nro}>
           {nro === currentPage ? (
-            " " + nro + " "
+            <Button variant="outlined" style={{ margin: "3px" }}>
+              {nro}
+            </Button>
           ) : (
-            <button onClick={(e) => onClick(nro)}> {nro} </button>
+            <Button
+              variant="contained"
+              style={{ margin: "3px" }}
+              onClick={(e) => onClick(nro)}
+            >
+              {nro}
+            </Button>
           )}
         </React.Fragment>
       ))}
