@@ -1,0 +1,38 @@
+.layout-app-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr;
+}
+
+.layout-app-header {
+  color: white;
+  background-color: #007661;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 5px;
+}
+.layout-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.layout-main > img {
+  width: 100px;
+}
+
+.list-header {
+  background-color: #2f4858;
+  color: white;
+  font-weight: bold;
+}
+
+input {
+  padding: 5px;
+}
+
+button {
+  margin: 5px;
+  padding: 5px;
+}
