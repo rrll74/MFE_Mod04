@@ -12,10 +12,47 @@
   justify-content: flex-end;
   padding-right: 5px;
 }
+
+.layout-app-body {
+  display: grid;
+  grid-template:
+    "a a a a a" 1fr
+    "b b b b c" 1fr;
+  align-content: center;
+  gap: 10px;
+}
+
+.layout-app-body div {
+  margin: 3px;
+  padding: 10px;
+  border: #007661 solid 1px;
+}
+
 .layout-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.layout-main-content {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.layout-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.links a {
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+  color: #007661;
+  font-weight: bold;
+  background-color: lightgray;
 }
 
 .layout-main > img {

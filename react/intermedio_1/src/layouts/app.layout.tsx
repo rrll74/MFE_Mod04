@@ -7,6 +7,6 @@ interface Props {
 export const AppLayout: React.FC<Props> = ({ children }) => (
   <div className="layout-app-container">
     <div className="layout-app-header">Puppies and Kitties</div>
-    {children}
+    <div className="layout-app-body">{children}</div>
   </div>
 );

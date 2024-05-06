@@ -1,12 +1,17 @@
 import React from "react";
-import { AppLayout, MainLayout } from "@/layouts";
+import { AppLayout, CartLayout, MainLayout } from "@/layouts";
+import { LinksContainer } from "@/pods/links";
+import { PetListContainer } from "@/pods/pet-list";
 
 export const KittiesPage: React.FC = () => {
   return (
     <AppLayout>
+      <LinksContainer />
       <MainLayout>
-        <>Lista de gatitos</>
+        <h1>Kitties List</h1>
+        <PetListContainer petType={"cats"} />
       </MainLayout>
+      <CartLayout>{""}</CartLayout>
     </AppLayout>
   );
 };
