@@ -1,4 +1,4 @@
-import { PetEntity, PetType } from "./pet-list.vm";
+import { PetEntity, PetType } from "./pet-list.viewmodel";
 import { mainData } from "mockdata";
 
 export interface PetEntityApi {

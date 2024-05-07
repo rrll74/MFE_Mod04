@@ -1,4 +1,4 @@
-import * as vm from "./pet-list.vm";
+import * as vm from "./pet-list.viewmodel";
 import * as api from "./pet-list.api";
 
 export const mapPetFromApiToVm = (pet: api.PetEntityApi): vm.PetEntity => ({

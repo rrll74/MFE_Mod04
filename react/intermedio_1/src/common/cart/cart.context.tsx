@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CartProfile, createEmptyCartProfile } from "./cart.vm";
+import { CartProfile, createEmptyCartProfile } from "./cart.viewmodel";
 
 interface Context extends CartProfile {
   setCartProfile: (cartProfile: CartProfile) => void;

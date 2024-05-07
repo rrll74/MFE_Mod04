@@ -1,9 +1,7 @@
-export interface PetProfile {
-  idPet: string;
-}
+import { PetEntity } from "@/pods/pet-list";
 
 export interface CartProfile {
-  pets: PetProfile[];
+  pets: PetEntity[];
 }
 
 export const createEmptyCartProfile = (): CartProfile => ({

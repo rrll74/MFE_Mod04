@@ -1,5 +1,6 @@
 import React from "react";
-import { PetEntity } from "./pet-list.vm";
+import { PetEntity } from "./pet-list.viewmodel";
+import { PetCardContainer } from "./components/pet-card";
 
 interface Props {
   pets: PetEntity[];
@@ -12,8 +13,7 @@ export const PetListComponent: React.FC<Props> = (props) => {
     <React.Fragment>
       {pets.map((pet) => (
         <React.Fragment key={pet.id}>
-          <img src={pet.picUrl} />
-          <span>{pet.title}</span>
+          <PetCardContainer pet={pet} />
         </React.Fragment>
       ))}
     </React.Fragment>

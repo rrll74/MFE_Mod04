@@ -5,6 +5,5 @@ interface Props {
 }
 
 export const LinksLayout: React.FC<Props> = ({ children }) => (
-  <div className="layout-cart">
-    {children}</div>
+  <div className="layout-cart">{children}</div>
 );

@@ -16,22 +16,28 @@
 .layout-app-body {
   display: grid;
   grid-template:
-    "a a a a a" 1fr
-    "b b b b c" 1fr;
+    "links links links links"
+    "main  main  main  cart";
   align-content: center;
   gap: 10px;
 }
 
-.layout-app-body div {
+.layout-app-body > div {
   margin: 3px;
   padding: 10px;
   border: #007661 solid 1px;
 }
 
 .layout-main {
+  grid-area: main;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.layout-main-list {
+  display: flex;
+  flex-flow: row;
 }
 
 .layout-main-content {
@@ -41,9 +47,14 @@
 }
 
 .layout-cart {
+  grid-area: cart;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.links {
+  grid-area: links;
 }
 
 .links a {
@@ -55,8 +66,29 @@
   background-color: lightgray;
 }
 
-.layout-main > img {
+.pet-card {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pet-card img {
   width: 100px;
+  height: 75px;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px #007661;
+}
+
+.pet-cart-card {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.pet-cart-card img {
+  width: 50px;
+  height: 40px;
+  border-radius: 5px;
 }
 
 .list-header {
