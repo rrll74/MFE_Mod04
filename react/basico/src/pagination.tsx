@@ -15,7 +15,7 @@ export const Pagination: React.FC<Props> = (props) => {
   const { totals, onChange, totalPages, currentPage } = props;
   // const [pages, setPages] = React.useState<number[]>(totalPages);
 
-  const onClick = (nro) => {
+  const onClick = (nro: number) => {
     myContext.setPage(nro);
     onChange(nro);
   };
