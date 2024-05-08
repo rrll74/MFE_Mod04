@@ -1,4 +1,6 @@
 import React from "react";
+import { PetsProvider } from "@/common/pets";
+import { CartProvider } from "@/common/cart";
 import { AppLayout, CartLayout, MainLayout } from "@/layouts";
 import { LinksContainer } from "@/pods/links";
 import { PetListContainer, PetType } from "@/pods/pet-list";
@@ -15,11 +17,17 @@ export const MainPage: React.FC<Props> = (props) => {
   return (
     <AppLayout>
       <LinksContainer />
-      <MainLayout>
-        <h1>{title}</h1>
-        <PetListContainer petType={type} />
-      </MainLayout>
-      <CartLayout><CartListContainer /></CartLayout>
+      <PetsProvider>
+        <CartProvider>
+          <MainLayout>
+            <h1>{title}</h1>
+            <PetListContainer petType={type} />
+          </MainLayout>
+          <CartLayout>
+            <CartListContainer />
+          </CartLayout>
+        </CartProvider>
+      </PetsProvider>
     </AppLayout>
   );
 };

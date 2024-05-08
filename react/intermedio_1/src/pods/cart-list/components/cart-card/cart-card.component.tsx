@@ -1,16 +1,15 @@
 import React from "react";
-import { CardActions, CardContent } from "@mui/material";
+import { CardActions, CardContent, Icon } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { PetEntity } from "@/pods/pet-list";
 
 interface Props {
   pet: PetEntity;
+  handleDelete: (id: string) => void;
 }
 
 export const CartCardComponent: React.FC<Props> = (props) => {
-  const { pet } = props;
-
-  const handleDelete: React.MouseEventHandler = (e) => {};
+  const { pet, handleDelete } = props;
 
   return (
     <div className="pet-cart-card">
@@ -18,7 +17,7 @@ export const CartCardComponent: React.FC<Props> = (props) => {
         <img src={pet.picUrl} />
       </CardContent>
       <CardActions>
-        <Delete onClick={handleDelete} />
+        <Delete onClick={(e) => handleDelete(pet.id)} />
       </CardActions>
     </div>
   );

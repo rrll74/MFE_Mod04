@@ -5,6 +5,7 @@ export const mapPetFromApiToVm = (pet: api.PetEntityApi): vm.PetEntity => ({
   id: pet.id,
   picUrl: pet.picUrl,
   title: pet.title,
+  selected: false,
 });
 
 export const mapPetCollectionFromApiToVm = (

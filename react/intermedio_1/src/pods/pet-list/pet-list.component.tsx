@@ -1,19 +1,20 @@
 import React from "react";
-import { PetEntity } from "./pet-list.viewmodel";
+import { PetEntity, PetType } from "./pet-list.viewmodel";
 import { PetCardContainer } from "./components/pet-card";
 
 interface Props {
-  pets: PetEntity[];
+  petList: PetEntity[];
+  petType: PetType;
 }
 
 export const PetListComponent: React.FC<Props> = (props) => {
-  const { pets } = props;
+  const { petType, petList } = props;
 
   return (
     <React.Fragment>
-      {pets.map((pet) => (
+      {petList.map((pet) => (
         <React.Fragment key={pet.id}>
-          <PetCardContainer pet={pet} />
+          <PetCardContainer pet={pet} key={`cart${pet.id}`} type={petType} />
         </React.Fragment>
       ))}
     </React.Fragment>

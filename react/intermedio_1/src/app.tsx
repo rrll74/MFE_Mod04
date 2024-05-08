@@ -1,10 +1,6 @@
 import React from "react";
-import { CartProvider, RouterComponent } from "@/core";
+import { RouterComponent } from "@/core";
 
 export const App = () => {
-  return (
-    <CartProvider>
-      <RouterComponent />
-    </CartProvider>
-  );
+  return <RouterComponent />;
 };

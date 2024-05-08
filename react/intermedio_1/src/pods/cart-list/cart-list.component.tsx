@@ -1,24 +1,15 @@
 import React from "react";
-import { CartContext } from "@/core";
+import { CartContext } from "@/common/cart";
 import { CartCardContainer } from "./components/cart-card";
 
-import { mainData } from "@/mockdata";
-import { mapPetCollectionFromApiToVm } from "@/pods/pet-list/pet-list.mapper";
-
 export const CartListComponent: React.FC = () => {
-  const [cart, setCart] = React.useState(
-    mapPetCollectionFromApiToVm(mainData["dogs"])
-  );
-
-  const setCartProfile = React.useContext(CartContext);
-
-  const handleCart = (e: React.FormEvent<HTMLFormElement>) => {};
+  const { pets } = React.useContext(CartContext);
 
   return (
-    <>
-      {cart.map((pet) => (
-        <CartCardContainer pet={pet} />
+    <React.Fragment>
+      {pets.map((pet) => (
+        <CartCardContainer pet={pet} key={`pet${pet.id}`} />
       ))}
-    </>
+    </React.Fragment>
   );
 };

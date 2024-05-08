@@ -1,13 +1,20 @@
 import React from "react";
+import {
+  Button,
+  CardActions,
+  CardContent,
+  Checkbox,
+  Typography,
+} from "@mui/material";
 import { PetEntity } from "@/pods/pet-list";
-import { Button, CardActions, CardContent, Typography } from "@mui/material";
 
 interface Props {
   pet: PetEntity;
+  handleClick: (id: string) => void;
 }
 
 export const PetCardComponent: React.FC<Props> = (props) => {
-  const { pet } = props;
+  const { pet, handleClick } = props;
 
   return (
     <div className="pet-card">
@@ -17,9 +24,19 @@ export const PetCardComponent: React.FC<Props> = (props) => {
           {pet.title}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" variant="contained">Add</Button>
-      </CardActions>
+      {pet.selected ? (
+        <Checkbox disabled checked />
+      ) : (
+        <CardActions>
+          <Button
+            size="small"
+            variant="contained"
+            onClick={(e) => handleClick(pet.id)}
+          >
+            Add
+          </Button>
+        </CardActions>
+      )}
     </div>
   );
 };

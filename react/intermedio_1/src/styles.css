@@ -91,17 +91,3 @@
   border-radius: 5px;
 }
 
-.list-header {
-  background-color: #2f4858;
-  color: white;
-  font-weight: bold;
-}
-
-input {
-  padding: 5px;
-}
-
-button {
-  margin: 5px;
-  padding: 5px;
-}
