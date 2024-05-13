@@ -1,31 +1,37 @@
-interface OrderRowEntity {
-  id: number;
-  desc: string;
-  import: number;
+export type OrderState = "Pendiente" | "Válido";
+
+export interface RowOrderEntity {
+  valid: boolean;
+  state: OrderState;
+  description: string;
+  price: number;
 }
 
-interface OrderHeaderEntity {
-  id: number;
-  number: number;
+export interface OrderEntity {
+  nro: number;
   provider: string;
   date: string;
   total: number;
   state: number;
+  orders: RowOrderEntity[];
 }
 
-export interface OrderProfile {
-  header: OrderHeaderEntity;
-  rows: OrderRowEntity[];
-}
+export const findPetByNro = (nro: number, orders: OrderEntity[]) => {
+  let orderFound: OrderEntity = null;
 
-export const createEmptyOrderProfile = (): OrderProfile => ({
-  header: {
-    id: 0,
-    number: 0,
-    provider: "",
-    date: "",
-    total: 0,
-    state: 0,
-  },
-  rows: [],
+  orders.map((order) => {
+    if (order.nro === nro) {
+      orderFound = order;
+    }
+  });
+  return orderFound;
+};
+
+export const createEmptyOrderEntity = (): OrderEntity => ({
+  nro: 0,
+  provider: "",
+  date: "",
+  total: 0,
+  state: 0,
+  orders: [],
 });

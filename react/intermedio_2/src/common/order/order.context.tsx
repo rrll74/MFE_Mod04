@@ -1,20 +1,17 @@
 import React from "react";
-import { createEmptyOrderProfile, OrderProfile } from "./order.viewmodel";
+import { createEmptyOrderEntity, OrderEntity } from "./order.viewmodel";
 
-interface Context extends OrderProfile {
-  setOrderProfile: (orderProfile: OrderProfile) => void;
+interface Context extends OrderEntity {
+  setOrderProfile: (orderProfile: OrderEntity) => void;
 }
 
 export const OrderContext = React.createContext<Context>({
-  header: {
-    id: 0,
-    number: 0,
-    provider: "",
-    date: "",
-    total: 0,
-    state: 0,
-  },
-  rows: [],
+  nro: 0,
+  provider: "",
+  date: "",
+  total: 0,
+  state: 0,
+  orders: [],
   setOrderProfile: () =>
     console.warn(
       "** If you are reading this, likely you have forgotten to add the provider on top of your app"
@@ -26,15 +23,19 @@ interface Props {
 }
 
 export const OrderProvider: React.FC<Props> = ({ children }) => {
-  const [orderProfile, setOrderProfile] = React.useState<OrderProfile>(
-    createEmptyOrderProfile()
+  const [orderProfile, setOrderProfile] = React.useState<OrderEntity>(
+    createEmptyOrderEntity()
   );
 
   return (
     <OrderContext.Provider
       value={{
-        header: orderProfile.header,
-        rows: orderProfile.rows,
+        nro: orderProfile.nro,
+        provider: orderProfile.provider,
+        date: orderProfile.date,
+        total: orderProfile.total,
+        state: orderProfile.state,
+        orders: orderProfile.orders,
         setOrderProfile,
       }}
     >

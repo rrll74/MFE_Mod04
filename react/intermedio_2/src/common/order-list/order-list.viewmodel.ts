@@ -1,7 +1,7 @@
-import { OrderProfile } from "@/common/order";
+import { OrderEntity } from "@/common/order";
 
 export interface OrderListProfile {
-  orderList: OrderProfile[];
+  orderList: OrderEntity[];
 }
 
 export const createEmptyOrderListProfile = (): OrderListProfile => ({

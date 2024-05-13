@@ -1,19 +1,14 @@
 import React from "react";
-import { PetsProvider } from "@/common/pets";
-import { CartProvider } from "@/common/cart";
-import { AppLayout, CartLayout, MainLayout } from "@/layouts";
-import { LinksContainer } from "@/pods/links";
-import { PetListContainer, PetType } from "@/pods/pet-list";
-import { CartListContainer } from "@/pods/cart-list";
+import { AppLayout } from "@/layouts";
 import { ActionsLayout } from "@/layouts/actions.layout";
+import { OrderEntity } from "@/common/order";
 
 interface Props {
-  title: string;
-  type: PetType;
+  order: OrderEntity;
 }
 
-export const MainPage: React.FC<Props> = (props) => {
-  const { title, type } = props;
+export const OrderPage: React.FC<Props> = (props) => {
+  const { order } = props;
 
   return (
     <AppLayout>

@@ -8,7 +8,7 @@ interface Context extends OrderListProfile {
   setOrderListProfile: (orderListProfile: OrderListProfile) => void;
 }
 
-export const PetsContext = React.createContext<Context>({
+export const OrderListContext = React.createContext<Context>({
   orderList: [],
   setOrderListProfile: () =>
     console.warn(
@@ -25,10 +25,10 @@ export const OrderListProvider: React.FC<Props> = ({ children }) => {
     React.useState<OrderListProfile>(createEmptyOrderListProfile());
 
   return (
-    <PetsContext.Provider
+    <OrderListContext.Provider
       value={{ orderList: orderListProfile.orderList, setOrderListProfile }}
     >
       {children}
-    </PetsContext.Provider>
+    </OrderListContext.Provider>
   );
 };

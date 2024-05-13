@@ -4,6 +4,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const OrderBodyLayout: React.FC<Props> = ({ children }) => (
+export const OrderListLayout: React.FC<Props> = ({ children }) => (
   <div className="layout-order-body">{children}</div>
 );
