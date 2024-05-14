@@ -1,7 +1,9 @@
 import React from "react";
-import { OrderCardComponent } from "./order-card.component";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/core";
 import { OrderEntity } from "@/common/order";
 import { OrderListContext } from "@/common/order-list";
+import { OrderCardComponent } from "./order-card.component";
 
 interface Props {
   order: OrderEntity;
@@ -24,5 +26,16 @@ export const OrderCardContainer: React.FC<Props> = (props) => {
     setOrderListProfile({ orderList: newList });
   };
 
-  return <OrderCardComponent order={order} handleClick={handleDeleteAction} />;
+  const handleEditAction = (nro: number) => {
+    const navigate = useNavigate();
+    navigate(routes.order(nro));
+  };
+
+  return (
+    <OrderCardComponent
+      order={order}
+      handleClickDelete={handleDeleteAction}
+      handleClickEdit={handleEditAction}
+    />
+  );
 };

@@ -1,28 +1,30 @@
 import React from "react";
-import { AppLayout } from "@/layouts";
+import { useParams } from "react-router-dom";
+import { findOrderByNro, OrderContext, OrderProvider } from "@/common/order";
+import { OrderListContext } from "@/common/order-list";
+import { AppLayout, OrderBodyLayout, OrderHeaderLayout } from "@/layouts";
 import { ActionsLayout } from "@/layouts/actions.layout";
-import { OrderEntity } from "@/common/order";
+import { RowOrderLinksContainer } from "@/pods/links";
+import { OrderContainer } from "@/pods/order";
 
-interface Props {
-  order: OrderEntity;
-}
+export const OrderScene: React.FC = () => {
+  const orderProvider = React.useContext(OrderContext);
+  const orderListProvider = React.useContext(OrderListContext);
+  const { nro } = useParams();
+  const nroNumber = parseInt(nro);
 
-export const OrderPage: React.FC<Props> = (props) => {
-  const { order } = props;
+  React.useEffect(() => {
+    const order = findOrderByNro(nroNumber, orderListProvider.orderList);
+    orderProvider.setOrderProfile(order);
+  }, []);
 
   return (
     <AppLayout>
-      <ActionsLayout>
-        <NewRowContainer />
-      </ActionsLayout>
       <OrderProvider>
-        <OrderHeaderLayout>
-          <h1>{title}</h1>
-          <OrderHeaderContainer />
-        </OrderHeaderLayout>
-        <OrderBodyLayout>
-          <OrderRowsContainer />
-        </OrderBodyLayout>
+        <ActionsLayout>
+          <RowOrderLinksContainer />
+        </ActionsLayout>
+        <OrderContainer />
       </OrderProvider>
     </AppLayout>
   );

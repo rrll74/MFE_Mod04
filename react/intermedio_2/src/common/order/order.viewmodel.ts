@@ -16,7 +16,7 @@ export interface OrderEntity {
   orders: RowOrderEntity[];
 }
 
-export const findPetByNro = (nro: number, orders: OrderEntity[]) => {
+export const findOrderByNro = (nro: number, orders: OrderEntity[]) => {
   let orderFound: OrderEntity = null;
 
   orders.map((order) => {

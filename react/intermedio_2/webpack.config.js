@@ -10,7 +10,7 @@ module.exports = {
     plugins: [new TsconfigPathsPlugin()],
   },
   entry: {
-    app: ["./index.tsx", "./styles.css"],
+    app: ["./index.tsx", "./styles.scss"],
   },
   devtool: "eval-source-map",
   stats: "errors-only",
@@ -35,6 +35,11 @@ module.exports = {
       {
         test: /\.html$/,
         loader: "html-loader",
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.css$/,
