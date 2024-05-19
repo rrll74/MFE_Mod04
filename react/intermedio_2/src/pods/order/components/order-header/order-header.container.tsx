@@ -1,10 +1,17 @@
 import React from "react";
 import { OrderHeaderComponent } from "./order-header.component";
+import { OrderEntity } from "@/common/order";
 
-export const OrderHeaderContainer: React.FC = () => {
+interface Props {
+  order: OrderEntity;
+}
+
+export const OrderHeaderContainer: React.FC<Props> = (props) => {
+  const { order } = props;
+
   return (
-    <>
-      <OrderHeaderComponent />
-    </>
+    <React.Fragment>
+      <OrderHeaderComponent order={order} />
+    </React.Fragment>
   );
 };

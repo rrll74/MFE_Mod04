@@ -1,22 +1,20 @@
 import React from "react";
-import { OrderContext } from "@/common/order";
-import { CartCardContainer } from "./components/cart-card";
+import { OrderEntity } from "@/common/order";
 import { OrderBodyLayout, OrderHeaderLayout } from "@/layouts";
 import { OrderHeaderContainer } from "./components/order-header";
 import { OrderRowsContainer } from "./components/order-rows";
 
-export const OrderComponent: React.FC = () => {
-  const orderProvider = React.useContext(OrderContext);
+interface Props {
+  order: OrderEntity;
+}
+
+export const OrderComponent: React.FC<Props> = (props) => {
+  const { order } = props;
 
   return (
     <React.Fragment>
-      <OrderHeaderLayout>
-        <h1>{orderProvider.nro}</h1>
-        <OrderHeaderContainer />
-      </OrderHeaderLayout>
-      <OrderBodyLayout>
-        <OrderRowsContainer />
-      </OrderBodyLayout>
+      <OrderHeaderContainer order={order} />
+      <OrderRowsContainer order={order} />
     </React.Fragment>
   );
 };

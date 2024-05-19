@@ -1,8 +1,7 @@
 import React from "react";
-import {
-  createEmptyOrderListProfile,
-  OrderListProfile,
-} from "./order-list.viewmodel";
+import { OrderListProfile } from "./order-list.viewmodel";
+import { getOrderCollection } from "./order-list.api";
+import { mapOrderCollectionFromApiToVm } from "./order-list.mapper";
 
 interface Context extends OrderListProfile {
   setOrderListProfile: (orderListProfile: OrderListProfile) => void;
@@ -22,7 +21,11 @@ interface Props {
 
 export const OrderListProvider: React.FC<Props> = ({ children }) => {
   const [orderListProfile, setOrderListProfile] =
-    React.useState<OrderListProfile>(createEmptyOrderListProfile());
+    React.useState<OrderListProfile>({
+      orderList: mapOrderCollectionFromApiToVm(getOrderCollection()),
+    });
+
+  console.log("carga lista");
 
   return (
     <OrderListContext.Provider
