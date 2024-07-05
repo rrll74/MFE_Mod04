@@ -1,7 +1,12 @@
 import React from "react";
 import { OrderComponent } from "./order.component";
 import { OrderListContext } from "@/common/order-list";
-import { createEmptyOrderEntity, findOrderByNro, OrderEntity } from "@/common/order";
+import {
+  createEmptyOrderEntity,
+  findOrderByNro,
+  OrderEntity,
+  RowOrderEntity,
+} from "@/common/order";
 
 interface Props {
   nro: number;
@@ -14,9 +19,22 @@ export const OrderContainer: React.FC<Props> = (props) => {
 
   React.useEffect(() => {
     const editionOrder = findOrderByNro(nro, orderListProvider.orderList);
-    console.log(nro, orderListProvider, editionOrder);
+    // console.log(nro, orderListProvider, editionOrder);
     setOrder(editionOrder);
-  }, []);
+  }, [order]);
 
-  return <OrderComponent order={order || createEmptyOrderEntity()} />;
+  const handleClickDeleteRow = (row: RowOrderEntity) => {
+    const newOrders = order.orders.map((current) =>
+      current.description !== row.description ? current : null
+    );
+    console.log(newOrders);
+    setOrder({ ...order, orders: newOrders });
+  };
+
+  return (
+    <OrderComponent
+      order={order || createEmptyOrderEntity()}
+      handleClickDeleteRow={handleClickDeleteRow}
+    />
+  );
 };

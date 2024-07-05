@@ -25,7 +25,7 @@ export const OrderListProvider: React.FC<Props> = ({ children }) => {
       orderList: mapOrderCollectionFromApiToVm(getOrderCollection()),
     });
 
-  console.log("carga lista");
+  // console.log("carga lista");
 
   return (
     <OrderListContext.Provider

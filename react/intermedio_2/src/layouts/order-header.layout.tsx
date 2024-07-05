@@ -6,7 +6,7 @@ interface Props {
 
 export const OrderHeaderLayout: React.FC<Props> = ({ children }) => (
   <div className="layout-order-header">
-    <h1>Order</h1>
+    <h1>Pedido</h1>
     {children}
   </div>
 );

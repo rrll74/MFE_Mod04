@@ -1,6 +1,7 @@
-import { OrderEntity } from "@/common/order";
-import { Button, Grid, TextField } from "@mui/material";
 import React from "react";
+import { OrderEntity } from "@/common/order";
+import { invert_date } from "@/common/common-functions";
+import { Button, Grid, TextField } from "@mui/material";
 
 interface Props {
   order: OrderEntity;
@@ -8,8 +9,15 @@ interface Props {
 
 export const OrderHeaderComponent: React.FC<Props> = (props) => {
   const { order } = props;
+  const [provider, setProvider] = React.useState(order.provider);
+  const [date, setDate] = React.useState(order.date);
 
-  console.log(order);
+  React.useEffect(() => {
+    console.log(order);
+    console.log("provider ", provider);
+    setProvider(order.provider);
+    setDate(invert_date(order.date));
+  }, [order]);
 
   return (
     <div className="order-header">
@@ -18,36 +26,41 @@ export const OrderHeaderComponent: React.FC<Props> = (props) => {
           <TextField
             label="Número"
             variant="outlined"
-            defaultValue={order.nro}
+            value={order.nro}
+            disabled
           />
         </Grid>
         <Grid item xs={6}>
           <TextField
-            sx={{width: "100%"}}
+            sx={{ width: "100%" }}
             label="Proveedor"
             variant="outlined"
-            defaultValue={order.provider}
+            value={provider}
+            onChange={(e) => setProvider(e.target.value)}
           />
         </Grid>
         <Grid item xs={3}>
           <TextField
             label="Fecha"
             variant="outlined"
-            defaultValue={order.date}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
           <TextField
             label="Total"
             variant="outlined"
-            defaultValue={order.total}
+            value={order.total}
+            disabled
           />
         </Grid>
         <Grid item xs={4}>
           <TextField
             label="Estado"
             variant="outlined"
-            defaultValue={order.state}
+            value={order.state}
+            disabled
           />
         </Grid>
         <Grid item xs={4}>

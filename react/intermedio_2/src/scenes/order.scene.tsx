@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { OrderListProvider } from "@/common/order-list";
 import { AppLayout } from "@/layouts";
 import { ActionsLayout } from "@/layouts/actions.layout";
 import { RowOrderLinksContainer } from "@/pods/links";
@@ -11,13 +10,11 @@ export const OrderScene: React.FC = () => {
   const nroNumber = parseInt(nro);
 
   return (
-    <OrderListProvider>
-      <AppLayout>
-        <ActionsLayout>
-          <RowOrderLinksContainer />
-        </ActionsLayout>
-        <OrderContainer nro={nroNumber} />
-      </AppLayout>
-    </OrderListProvider>
+    <AppLayout>
+      <ActionsLayout>
+        <RowOrderLinksContainer />
+      </ActionsLayout>
+      <OrderContainer nro={nroNumber} />
+    </AppLayout>
   );
 };

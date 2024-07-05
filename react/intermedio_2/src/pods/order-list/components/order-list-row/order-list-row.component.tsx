@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, TableCell, TableRow } from "@mui/material";
 import { OrderEntity } from "@/common/order";
+import { invert_date } from "@/common/common-functions";
 
 interface Props {
   order: OrderEntity;
@@ -15,7 +16,7 @@ export const OrderListRowComponent: React.FC<Props> = (props) => {
     <TableRow key={`order${order.nro}`}>
       <TableCell>{order.nro}</TableCell>
       <TableCell>{order.provider}</TableCell>
-      <TableCell>{order.date}</TableCell>
+      <TableCell>{invert_date(order.date)}</TableCell>
       <TableCell>Importe {Math.round(order.total * 100) / 100}</TableCell>
       <TableCell align="center">{order.state}%</TableCell>
       <TableCell>
