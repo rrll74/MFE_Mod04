@@ -1,21 +1,29 @@
 import React from "react";
-import { OrderEntity, RowOrderEntity } from "@/common/order";
-import { OrderBodyLayout, OrderHeaderLayout } from "@/layouts";
+import { OrderEntity } from "@/common/order";
 import { OrderHeaderContainer } from "./components/order-header";
 import { OrderRowsContainer } from "./components/order-rows";
 
 interface Props {
   order: OrderEntity;
-  handleClickDeleteRow: (row: RowOrderEntity) => void;
+  setOrder: React.Dispatch<React.SetStateAction<OrderEntity>>;
+  saveOrder: (row: OrderEntity) => void;
 }
 
 export const OrderComponent: React.FC<Props> = (props) => {
-  const { order, handleClickDeleteRow } = props;
+  const { order, saveOrder, setOrder } = props;
 
   return (
     <React.Fragment>
-      <OrderHeaderContainer order={order} />
-      <OrderRowsContainer order={order} handleClickDeleteRow={handleClickDeleteRow} />
+      <OrderHeaderContainer
+        order={order}
+        setOrder={setOrder}
+        saveOrder={saveOrder}
+      />
+      <OrderRowsContainer
+        order={order}
+        setOrder={setOrder}
+        saveOrder={saveOrder}
+      />
     </React.Fragment>
   );
 };

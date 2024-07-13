@@ -25,7 +25,7 @@ export const mainData = [
     orders: [
       {
         valid: true,
-        state: "Valido",
+        state: "Válido",
         description: "Chaquetas cuero",
         price: 66.72,
       },

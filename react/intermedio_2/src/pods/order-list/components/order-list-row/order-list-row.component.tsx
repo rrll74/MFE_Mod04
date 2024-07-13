@@ -17,8 +17,10 @@ export const OrderListRowComponent: React.FC<Props> = (props) => {
       <TableCell>{order.nro}</TableCell>
       <TableCell>{order.provider}</TableCell>
       <TableCell>{invert_date(order.date)}</TableCell>
-      <TableCell>Importe {Math.round(order.total * 100) / 100}</TableCell>
-      <TableCell align="center">{order.state}%</TableCell>
+      <TableCell>{`${(Math.round(order.total * 100) / 100).toFixed(
+        2
+      )} €`}</TableCell>
+      <TableCell align="center">{`${order.state.toFixed(2)} %`}</TableCell>
       <TableCell>
         <Button
           size="small"

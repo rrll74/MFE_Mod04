@@ -1,10 +1,8 @@
 import React from "react";
-import { OrderListComponent } from "./order-list.component";
-import { OrderListContext } from "@/common/order-list";
-import { getOrderCollection } from "../../common/order-list/order-list.api";
-import { mapOrderCollectionFromApiToVm } from "../../common/order-list/order-list.mapper";
 import { useNavigate } from "react-router-dom";
 import { OrderEntity } from "@/common/order";
+import { OrderListContext } from "@/common/order-list";
+import { OrderListComponent } from "./order-list.component";
 
 export const OrderListContainer: React.FC = () => {
   const { orderList, setOrderListProfile } = React.useContext(OrderListContext);
@@ -26,12 +24,23 @@ export const OrderListContainer: React.FC = () => {
     navigate(`/order/${nro}`);
   };
 
+  const handleClickNewOrder = (order: OrderEntity) => {
+    const newList: OrderEntity[] = [];
+    orderList.map((o) => {
+      newList.push(o);
+    });
+    newList.push(order);
+    console.log(newList);
+    setOrderListProfile({ orderList: newList });
+  };
+
   return (
     <div className="layout-main-list">
       <OrderListComponent
         orderList={orderList}
         handleEditAction={handleEditAction}
         handleDeleteAction={handleDeleteAction}
+        handleClickNewOrder={handleClickNewOrder}
       />
     </div>
   );

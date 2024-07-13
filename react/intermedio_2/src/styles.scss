@@ -57,7 +57,7 @@ $air: 5px;
 
 .layout-main-list {
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
 }
 
 .layout-main-content {
@@ -71,7 +71,6 @@ $air: 5px;
   flex-direction: column;
   align-items: center;
 }
-
 
 .pet-card {
   padding: $air;

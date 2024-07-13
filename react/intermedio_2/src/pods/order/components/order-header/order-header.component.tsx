@@ -1,23 +1,30 @@
 import React from "react";
+import { Button, Grid, TextField } from "@mui/material";
 import { OrderEntity } from "@/common/order";
 import { invert_date } from "@/common/common-functions";
-import { Button, Grid, TextField } from "@mui/material";
+import { InfoDialog } from "@/pods/dialogs";
 
 interface Props {
   order: OrderEntity;
+  setOrder: React.Dispatch<React.SetStateAction<OrderEntity>>;
+  saveOrder: (row: OrderEntity) => void;
 }
 
 export const OrderHeaderComponent: React.FC<Props> = (props) => {
-  const { order } = props;
+  const { order, setOrder, saveOrder } = props;
   const [provider, setProvider] = React.useState(order.provider);
-  const [date, setDate] = React.useState(order.date);
+  const [date, setDate] = React.useState(invert_date(order.date));
+  const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
-    console.log(order);
-    console.log("provider ", provider);
-    setProvider(order.provider);
-    setDate(invert_date(order.date));
-  }, [order]);
+    // setProvider(order.provider);
+    // setDate(invert_date(order.date));
+    setOrder({ ...order, date: invert_date(date), provider: provider });
+  }, [date, provider]);
+
+  const sendOrder = () => {
+    setOpen(true);
+  };
 
   return (
     <div className="order-header">
@@ -51,7 +58,7 @@ export const OrderHeaderComponent: React.FC<Props> = (props) => {
           <TextField
             label="Total"
             variant="outlined"
-            value={order.total}
+            value={order.total.toFixed(2)}
             disabled
           />
         </Grid>
@@ -59,14 +66,29 @@ export const OrderHeaderComponent: React.FC<Props> = (props) => {
           <TextField
             label="Estado"
             variant="outlined"
-            value={order.state}
+            value={order.state.toFixed(2)}
             disabled
           />
         </Grid>
         <Grid item xs={4}>
-          <Button variant="contained">Guardar</Button>
+          <Button variant="contained" onClick={(e) => saveOrder(order)}>
+            Guardar cambios
+          </Button>{" "}
+          <Button
+            variant="contained"
+            disabled={order.state !== 100}
+            onClick={sendOrder}
+          >
+            Enviar
+          </Button>
         </Grid>
       </Grid>
+      <InfoDialog
+        title="Envío de pedido"
+        msg="Pedido enviado"
+        open={open}
+        setOpen={setOpen}
+      />
     </div>
   );
 };

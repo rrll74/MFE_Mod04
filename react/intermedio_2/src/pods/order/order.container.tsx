@@ -1,12 +1,7 @@
 import React from "react";
+import { findOrderByNro, OrderListContext } from "@/common/order-list";
+import { asignInfoOrderEntity, OrderEntity } from "@/common/order";
 import { OrderComponent } from "./order.component";
-import { OrderListContext } from "@/common/order-list";
-import {
-  createEmptyOrderEntity,
-  findOrderByNro,
-  OrderEntity,
-  RowOrderEntity,
-} from "@/common/order";
 
 interface Props {
   nro: number;
@@ -15,26 +10,24 @@ interface Props {
 export const OrderContainer: React.FC<Props> = (props) => {
   const { nro } = props;
   const orderListProvider = React.useContext(OrderListContext);
-  const [order, setOrder] = React.useState<OrderEntity>();
+  const [order, setOrder] = React.useState<OrderEntity>(
+    findOrderByNro(nro, orderListProvider.orderList)
+  );
 
   React.useEffect(() => {
-    const editionOrder = findOrderByNro(nro, orderListProvider.orderList);
-    // console.log(nro, orderListProvider, editionOrder);
-    setOrder(editionOrder);
+    console.log("carga", order);
   }, [order]);
 
-  const handleClickDeleteRow = (row: RowOrderEntity) => {
-    const newOrders = order.orders.map((current) =>
-      current.description !== row.description ? current : null
+  const saveOrder = (row: OrderEntity) => {
+    const editionOrder: OrderEntity = findOrderByNro(
+      nro,
+      orderListProvider.orderList
     );
-    console.log(newOrders);
-    setOrder({ ...order, orders: newOrders });
+    // console.log(nro, orderListProvider, editionOrder);
+    asignInfoOrderEntity(order, editionOrder);
   };
 
   return (
-    <OrderComponent
-      order={order || createEmptyOrderEntity()}
-      handleClickDeleteRow={handleClickDeleteRow}
-    />
+    <OrderComponent order={order} setOrder={setOrder} saveOrder={saveOrder} />
   );
 };

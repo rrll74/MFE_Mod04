@@ -16,17 +16,6 @@ export interface OrderEntity {
   orders: RowOrderEntity[];
 }
 
-export const findOrderByNro = (nro: number, orders: OrderEntity[]) => {
-  let orderFound: OrderEntity = null;
-
-  orders.map((order) => {
-    if (order.nro === nro) {
-      orderFound = order;
-    }
-  });
-  return orderFound;
-};
-
 export const createEmptyOrderEntity = (): OrderEntity => ({
   nro: 0,
   provider: "",
@@ -35,3 +24,15 @@ export const createEmptyOrderEntity = (): OrderEntity => ({
   state: 0,
   orders: [],
 });
+
+export const asignInfoOrderEntity = (
+  origin: OrderEntity,
+  destiny: OrderEntity
+): void => {
+  destiny.date = origin.date;
+  destiny.nro = origin.nro;
+  destiny.provider = origin.provider;
+  destiny.state = origin.state;
+  destiny.total = origin.total;
+  destiny.orders = origin.orders;
+};
