@@ -1,0 +1,9 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.login-user, .login-pass, .login-button {
+  max-width: 300px;
+}

@@ -1,0 +1,25 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Pulse aquí para ver usuario y contraseña de acceso
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Usuario: {{ "master8@lemoncode.net" }}</p>
+    <p>Contraseña: 12345678</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<form class="login-form">
+  <mat-form-field class="login-user">
+    <mat-label>Usuario/a:</mat-label>
+    <input matInput placeholder="Introduzca el nombre de usuario/a" />
+  </mat-form-field>
+
+  <mat-form-field class="login-pass">
+    <mat-label>Contraseña:</mat-label>
+    <input matInput type="password" placeholder="Introduzca contraseña" />
+  </mat-form-field>
+
+  <button mat-flat-button class="login-button">Acceder</button>
+</form>
