@@ -1,4 +1,4 @@
-<ul>
+<ul *ngIf="!isLoggedIn">
   <li routerLinkActive="selected"><a mat-button routerLink="/home">Home</a></li>
   <li routerLinkActive="selected">
     <a mat-button routerLink="/login">Login</a>

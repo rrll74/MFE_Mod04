@@ -19,9 +19,11 @@
     "target": "ES2022",
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
-    "baseUrl": ".",
-    "paths": { "@assets": ["src/assets"] }
+    "baseUrl": "./src/",
+    "paths": { "@/*": ["*"] }
   },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
