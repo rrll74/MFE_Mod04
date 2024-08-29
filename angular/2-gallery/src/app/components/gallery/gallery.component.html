@@ -1,0 +1,40 @@
+<div class="main">
+  <div class="buttons">
+    <button mat-flat-button [disabled]="posPhoto === 0" (click)="previous()">
+      Anterior
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="posPhoto === totalPhotos - 1"
+      (click)="next()"
+    >
+      Siguiente
+    </button>
+    <button mat-flat-button (click)="increase()">Aumentar</button>
+    <button mat-flat-button (click)="decrease()">Disminuir</button>
+    <button mat-flat-button *ngIf="!playing" (click)="play()">Play</button>
+    <button mat-flat-button *ngIf="playing" (click)="stop()">Stop</button>
+  </div>
+  <div class="photo-list">
+    <button mat-flat-button (click)="previousPage()" [disabled]="page === 1">
+      &lt;
+    </button>
+    <img
+      *ngFor="let photo of gallery | slice : (page - 1) * 3 : page * 3"
+      [src]="'assets/' + photo.src"
+      [alt]="photo.title"
+      (click)="select(photo)"
+      [class]="photo.id === selectedPhoto.id ? 'selected-img' : ''"
+    />
+    <button mat-flat-button (click)="nextPage()" [disabled]="page === maxPages">
+      &gt;
+    </button>
+  </div>
+  <div class="selected-photo">
+    <img
+      [src]="'assets/' + selectedPhoto.src"
+      [alt]="selectedPhoto.title"
+      [style.width.%]="size"
+    />
+  </div>
+</div>

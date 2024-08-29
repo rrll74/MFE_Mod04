@@ -1,0 +1,5 @@
+<div *ngIf="isLoggedIn">
+  <img [src]="rutaLogo" class="logo-privado" alt="Logo león" />
+  <h1>Panel accedido en Ejercicio Angular Layouts</h1>
+  <p>Usuario: {{ getUserName() || "No registrado"}}</p>
+</div>

@@ -1,0 +1,5 @@
+<div *ngIf="!isLoggedIn">
+  <img [src]="rutaLogo" class="logo-publico" alt="Logo león" />
+  <h1>Ejercicio Angular Layouts</h1>
+  <p>{{ getUserName()!=="" ? ("Usuario: " + getUserName()) : "" }}</p>
+</div>
