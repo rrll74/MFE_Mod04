@@ -1,0 +1,66 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Pulse aquí para ver usuario y contraseña de acceso
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>Usuario: {{ "master8@lemoncode.net" }}</p>
+    <p>Contraseña: 12345678</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<form class="login-form" [formGroup]="editForm">
+  <mat-form-field class="login-user">
+    <mat-label>Usuario/a</mat-label>
+    <input
+      matInput
+      placeholder="Introduzca el nombre de usuario/a"
+      formControlName="username"
+    />
+  </mat-form-field>
+
+  <div class="error-info" *ngIf="nameControl.invalid && nameControl.touched">
+    <div *ngIf="nameControl.errors?.['required']">
+      El usuario es obligatorio
+    </div>
+    <div *ngIf="nameControl.errors?.['minlength']">
+      El usuario debe tener
+      {{ nameControl.errors?.['minlength'].requiredLength }} caracteres mínimo.
+      Tiene sólamente {{ nameControl.errors?.['minlength'].actualLength }}
+    </div>
+  </div>
+
+  <mat-form-field class="login-pass">
+    <mat-label>Contraseña</mat-label>
+    <input
+      matInput
+      type="password"
+      placeholder="Introduzca contraseña"
+      formControlName="password"
+    />
+  </mat-form-field>
+
+  <div class="error-info" *ngIf="passControl.invalid && passControl.touched">
+    <div *ngIf="passControl.errors?.['required']">
+      La contraseña es obligatoria
+    </div>
+    <div *ngIf="passControl.errors?.['minlength']">
+      La contraseña debe tener
+      {{ passControl.errors?.['minlength'].requiredLength }} caracteres mínimo.
+      Tiene sólamente {{ passControl.errors?.['minlength'].actualLength }}
+    </div>
+  </div>
+  <div *ngIf="logging" class="loading">
+    <img src="./assets/loading.gif" alt="" />
+  </div>
+
+  <button
+    mat-flat-button
+    class="login-button"
+    [disabled]="editForm.invalid"
+    (click)="login()"
+  >
+    Acceder
+  </button>
+</form>

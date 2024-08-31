@@ -1,0 +1,49 @@
+$air: 5px;
+$percentage_width: 80%;
+
+.photo-list {
+  width: $percentage_width;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  & img {
+    padding: $air;
+    width: 20%;
+  }
+}
+
+.selected-img {
+  border: 2px solid lightblue;
+}
+
+.selected-photo {
+  width: $percentage_width;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & img {
+    width: 95%;
+  }
+}
+
+.buttons {
+  width: $percentage_width;
+  padding: $air;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  & button {
+    margin: 0 $air;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
