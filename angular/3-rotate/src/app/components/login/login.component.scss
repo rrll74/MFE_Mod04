@@ -1,0 +1,21 @@
+$maxWidth: 300px;
+$separation: 5px;
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: $separation * 5;
+}
+
+.login-user,
+.login-pass,
+.login-button {
+  max-width: $maxWidth;
+}
+
+.error-info {
+  background-color: lightblue;
+  border-radius: 5px;
+  max-width: $maxWidth;
+  margin: ($separation * 2) 0;
+}
