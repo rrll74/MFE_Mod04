@@ -1,0 +1,22 @@
+[
+  {
+    "desc": "Realizar lista de producto faltante",
+    "done": "false"
+  },
+  {
+    "desc": "Verificar producto recibido",
+    "done": "true"
+  },
+  {
+    "desc": "Recogida completa de almacén",
+    "done": "false"
+  },
+  {
+    "desc": "Comprobación de presencia de empleados",
+    "done": "false"
+  },
+  {
+    "desc": "Chequeo de estado de recursos materiales",
+    "done": "true"
+  }
+]
